@@ -1,15 +1,15 @@
-const express = require('express');
-const conversionRoutes = require('./conversion.route')
+const express = require("express");
+const calculationRoutes = require("./calculation.route");
 const router = express.Router();
 
 /**
  * API status
  */
-router.get('/status', (req, res) => res.send('OK'));
+router.get("/status", (req, res) => res.send("OK"));
 
 /**
  * Conversions
  */
-router.use("/conversion", conversionRoutes);
+router.use("/operation", calculationRoutes);
 
 module.exports = router;

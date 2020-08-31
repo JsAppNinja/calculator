@@ -167,14 +167,17 @@ class Calculator extends React.Component {
         this.setState({
             isNewOperation: true,
         });
-        this.props.calculation(3);
+        this.props.calculate(11, '+', 4);
     };
 
     render() {
         const { displayValue } = this.state;
         const clearDisplay = displayValue !== '0';
         const clearText = clearDisplay ? 'C' : 'AC';
-
+        const { result } = this.props.calculation;
+        if (result) {
+            console.log(result.resultValue);
+        }
         return (
             <div className="calculator">
                 <CalculatorDisplay value={displayValue} />
@@ -313,7 +316,8 @@ class Calculator extends React.Component {
 }
 
 Calculator.propTypes = {
-    calculation: PropTypes.func.isRequired,
+    calculation: PropTypes.object.isRequired,
+    calculate: PropTypes.func.isRequired,
 };
 
 export default Calculator;

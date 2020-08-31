@@ -8,7 +8,8 @@ const mapStateToProps = createStructuredSelector({
     calculation: makeSelectCheckCalculation(),
 });
 const mapDispatchToProps = (dispatch) => ({
-    calculation: (leftValue) => dispatch(calculation(leftValue)),
+    calculate: (leftValue, operator, rightValue) =>
+        dispatch(calculation(leftValue, operator, rightValue)),
 });
 
 export default connect(

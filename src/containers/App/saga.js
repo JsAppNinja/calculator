@@ -54,10 +54,9 @@ export function* checkConversionWatcher() {
 export function* checkCalculation(action) {
     const options = makeJsonRequestOptions({
         method: 'POST',
-        requestUrlPath: 'conversion/add',
+        requestUrlPath: 'operation/calculate',
         data: action.payload,
     });
-
     yield call(appApiSaga, options, [calculationSucceeded], calculationFailed);
 }
 export function* checkCalculationWatcher() {

@@ -16,7 +16,7 @@ const initialState = {
     calculation: {
         submitting: null,
         error: null,
-        result: 1,
+        result: null,
         leftValue: 0,
         rightValue: 0,
     },
@@ -59,7 +59,6 @@ function appReducer(state = initialState, action) {
                 calculation: {
                     submitting: true,
                     error: false,
-                    result: 2,
                 },
             };
         case CALCULATION_SUCCESS:
@@ -69,8 +68,6 @@ function appReducer(state = initialState, action) {
                     submitting: false,
                     error: false,
                     result,
-                    leftValue: 1,
-                    rightValue: 2,
                 },
             };
         case CALCULATION_ERROR:
@@ -79,7 +76,6 @@ function appReducer(state = initialState, action) {
                 calculation: {
                     submitting: false,
                     error,
-                    result: 3,
                 },
             };
         default:

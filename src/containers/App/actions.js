@@ -35,12 +35,13 @@ export function checkConversion({
  *
  * @return {object} An action object with a type of CHECK_CONVERSION
  */
-export function calculation(leftValue) {
+export function calculation(leftValue, operator, rightValue) {
     return {
         type: CALCULATION,
         payload: {
             leftValue,
-            rightValue: 5,
+            operator,
+            rightValue,
         },
     };
 }
