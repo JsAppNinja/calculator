@@ -1,7 +1,10 @@
 const add = ({ leftValue, rightValue }) => leftValue + rightValue;
 const sub = ({ leftValue, rightValue }) => leftValue - rightValue;
 const multiply = ({ leftValue, rightValue }) => leftValue * rightValue;
-const divide = ({ leftValue, rightValue }) => leftValue / rightValue;
+const divide = ({ leftValue, rightValue }) => {
+	if (rightValue === 0) return "NaN";
+	return leftValue / rightValue;
+};
 const percent = ({ leftValue }) => {
 	const inputedValue = String(leftValue);
 	const fixedDigits = inputedValue.replace(/^-?\d*\.?/, "");

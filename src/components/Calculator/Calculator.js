@@ -10,16 +10,22 @@ const Calculator = ({ calculate, calculation }) => {
     const [operator, setOperator] = useState(null);
     const [waitingForOperand, setWaitingForOperand] = useState(false);
     const [isNewOperation, setNewOperationStatus] = useState(false);
+    const [prevValue, setPrevValue] = useState(null);
 
     const clearAll = () => {
         setValue(null);
+        setPrevValue(null);
         setDisplayValue('0');
         setOperator(null);
         setWaitingForOperand(false);
         setNewOperationStatus(false);
     };
 
-    const clearDisplay = () => setDisplayValue('0');
+    const clearDisplay = () => {
+        setPrevValue(value);
+        setValue(null);
+        setDisplayValue('0');
+    };
 
     const toggleSign = () => {
         calculate(parseFloat(displayValue), '+/-');
@@ -39,6 +45,7 @@ const Calculator = ({ calculate, calculation }) => {
     };
 
     const inputDigit = (digit) => {
+        if (isNewOperation) setPrevValue(null);
         if (waitingForOperand || isNewOperation) {
             setDisplayValue(String(digit));
             setWaitingForOperand(false);
@@ -53,8 +60,9 @@ const Calculator = ({ calculate, calculation }) => {
     const performOperation = (nextOperator) => {
         const inputValue = parseFloat(displayValue);
 
-        if (value === null) {
-            setValue(inputValue);
+        if (!value) {
+            if (prevValue) setValue(prevValue);
+            else setValue(inputValue);
         }
         if (operator) {
             const currentValue = value || 0;
