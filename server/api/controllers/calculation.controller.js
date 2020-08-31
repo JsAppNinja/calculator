@@ -4,7 +4,7 @@ const {
 	sub,
 	multiply,
 	divide,
-	mod,
+	percent,
 	opposite,
 } = require("../utils/helpers");
 const { isNil } = require("lodash");
@@ -15,6 +15,7 @@ const { isNil } = require("lodash");
  */
 exports.calculation = (req, res) => {
 	const { leftValue, operator, rightValue } = req.body;
+	console.log(req.body);
 	let resultValue = null;
 	switch (operator) {
 		case "+":
@@ -44,13 +45,11 @@ exports.calculation = (req, res) => {
 		case "+/-":
 			resultValue = opposite({
 				leftValue,
-				rightValue,
 			});
 			break;
 		case "%":
-			resultValue = mod({
+			resultValue = percent({
 				leftValue,
-				rightValue,
 			});
 			break;
 		default:
