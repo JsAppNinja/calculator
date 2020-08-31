@@ -1,17 +1,14 @@
 import React from 'react';
-import AutoScalingText from '../AutoScalingText';
+import AutoScalingText from 'components/AutoScalingText';
 
 class CalculatorDisplay extends React.Component {
     render() {
         const { value, ...props } = this.props;
-
         const language = navigator.language || 'en-US';
         let formattedValue = parseFloat(value).toLocaleString(language, {
             useGrouping: true,
             maximumFractionDigits: 6,
         });
-
-        // Add back missing .0 in e.g. 12.0
         const match = value.match(/\.\d*?(0*)$/);
 
         if (match)
