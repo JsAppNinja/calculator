@@ -53,12 +53,16 @@ const Calculator = ({ calculate, calculation }) => {
     const performOperation = (nextOperator) => {
         const inputValue = parseFloat(displayValue);
 
-        if (value == null) {
+        if (value === null) {
             setValue(inputValue);
-        } else if (operator) {
+        }
+        if (operator) {
             const currentValue = value || 0;
-            calculate(currentValue, operator, inputValue);
-            if (operator === '=') setNewOperationStatus(true);
+            if (operator === '=') {
+                setNewOperationStatus(true);
+            } else {
+                calculate(currentValue, operator, inputValue);
+            }
         }
         setWaitingForOperand(true);
         setOperator(nextOperator);
