@@ -1,8 +1,6 @@
 import { put, call, fork, takeLatest } from 'redux-saga/effects';
-import { CHECK_CONVERSION, CALCULATION } from 'containers/App/constants';
+import { CALCULATION } from 'containers/App/constants';
 import {
-    checkConversionSucceeded,
-    checkConversionFailed,
     calculationSucceeded,
     calculationFailed,
 } from 'containers/App/actions';
@@ -27,28 +25,6 @@ export function* appApiSaga(options, successHandlers, errorHandler) {
 }
 
 /**
- * CHECK_CONVERSION saga
- */
-export function* checkConversion(action) {
-    const options = makeJsonRequestOptions({
-        method: 'POST',
-        requestUrlPath: 'conversion/check',
-        data: action.payload,
-    });
-
-    yield call(
-        appApiSaga,
-        options,
-        [checkConversionSucceeded],
-        checkConversionFailed,
-    );
-}
-
-export function* checkConversionWatcher() {
-    yield takeLatest(CHECK_CONVERSION, checkConversion);
-}
-
-/**
  * CHECK_CALCULATION saga
  */
 export function* checkCalculation(action) {
@@ -67,6 +43,5 @@ export function* checkCalculationWatcher() {
  * Root saga manages watcher lifecycle
  */
 export default function* appMainSaga() {
-    // yield fork(checkConversionWatcher);
     yield fork(checkCalculationWatcher);
 }

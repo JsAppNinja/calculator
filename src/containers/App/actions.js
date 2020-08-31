@@ -1,45 +1,9 @@
 import { toastr } from 'react-redux-toastr';
 import {
-    CHECK_CONVERSION,
-    CHECK_CONVERSION_SUCCESS,
-    CHECK_CONVERSION_ERROR,
     CALCULATION,
     CALCULATION_SUCCESS,
     CALCULATION_ERROR,
 } from './constants';
-
-export function checkConversion({
-    originalValue,
-    originalUnit,
-    convertedUnit,
-    userInput,
-}) {
-    return {
-        type: CHECK_CONVERSION,
-        payload: {
-            originalValue: parseFloat(originalValue),
-            originalUnit,
-            convertedUnit,
-            userInput: parseFloat(userInput),
-        },
-    };
-}
-
-export function checkConversionSucceeded(result) {
-    return {
-        type: CHECK_CONVERSION_SUCCESS,
-        payload: { result },
-    };
-}
-
-export function checkConversionFailed(error) {
-    toastr.error(error.message);
-
-    return {
-        type: CHECK_CONVERSION_ERROR,
-        payload: { error },
-    };
-}
 
 /**
  * Calculation, this action starts the request saga
