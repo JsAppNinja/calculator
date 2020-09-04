@@ -15,7 +15,13 @@ const { isNil } = require("lodash");
  */
 exports.calculation = (req, res) => {
 	const { leftValue, operator, rightValue } = req.body;
-	console.log(req.body);
+	if (leftValue === "NaN") {
+		return res.status(httpStatus.OK).json({
+			success: true,
+			resultValue: "NaN",
+			isInvalid: true,
+		});
+	}
 	let resultValue = null;
 	switch (operator) {
 		case "+":

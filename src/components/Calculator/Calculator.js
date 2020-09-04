@@ -61,10 +61,10 @@ const Calculator = ({ calculate, calculation }) => {
         const inputValue = parseFloat(displayValue);
 
         if (!value) {
-            if (prevValue) setValue(prevValue);
-            else setValue(inputValue);
+            setValue(inputValue);
         }
         if (operator) {
+            if (isNewOperation && !value) setValue(prevValue);
             const currentValue = value || 0;
             if (operator === '=') {
                 setNewOperationStatus(true);
